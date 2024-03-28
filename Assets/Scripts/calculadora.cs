@@ -15,9 +15,15 @@ public class calculadora : MonoBehaviour {
     double rta;
     double memoria = 0;
 
+    public void op_parcial()
+    {
+        if(operacion.text != "")
+        {
+            igual();
+        }
+    }
     public void BorrarC()
     {
-
         resultado.text = "0";
         lblTempo.text = "";
         operacion.text = "";
@@ -25,6 +31,7 @@ public class calculadora : MonoBehaviour {
 
     public void sumas()
     {
+        op_parcial();
         if(resultado.text != "")
         {
             operacion.text = "+";
@@ -36,6 +43,7 @@ public class calculadora : MonoBehaviour {
     }
     public void resta()
     {
+        op_parcial();
         if (resultado.text != "")
         {
             operacion.text = "-";
@@ -46,6 +54,7 @@ public class calculadora : MonoBehaviour {
     }
     public void multiplicacion()
     {
+        op_parcial();
         if (resultado.text != "")
         {
             operacion.text = "*";
@@ -56,6 +65,7 @@ public class calculadora : MonoBehaviour {
     }
     public void division()
     {
+        op_parcial();
         if (resultado.text != "")
         {
             operacion.text = "/";
@@ -102,23 +112,10 @@ public class calculadora : MonoBehaviour {
     {
         memoria = 0;
     }
-    public void bin()
+    public void memoryresult()
     {
         resultado.text = memoria.ToString();
     }
-
-
-    public void memoryresult()
-    {
-        if (resultado.text != "")
-        {
-            operacion.text = "mod";
-            lblTempo.text = resultado.text;
-            textoimprimir = "";
-            resultado.text = textoimprimir;
-        }
-    }
-
     public void igual()
     {
         if (resultado.text != "")
@@ -130,7 +127,6 @@ public class calculadora : MonoBehaviour {
             
         }
     }
-
     public string operaciones(string n1, string n2, string opeMath)
     {
         string respuesta = "";
@@ -155,51 +151,6 @@ public class calculadora : MonoBehaviour {
                 }
                 
                 break;
-            case "retroceso":
-                respuesta = (System.Math.Sqrt(double.Parse(n1))).ToString();
-                break;
-            case "po2":
-                respuesta = (System.Math.Pow(double.Parse(n1), 2)).ToString();
-                break;
-            case "pox":
-                respuesta = (System.Math.Pow(double.Parse(n1), double.Parse(n2))).ToString();
-                break;
-            case "mod":
-                respuesta = (double.Parse(n1) % double.Parse(n2)).ToString();
-                break;
-            case "bin":
-                int numeroDecimal = int.Parse(n1);
-                int exp, digito;
-                double binario;
-                exp = 0;
-                binario = 0;
-                while (numeroDecimal != 0)
-                {
-                    digito = numeroDecimal % 2;
-                    binario = binario + digito * System.Math.Pow(10, exp);
-                    exp++;
-                    numeroDecimal = numeroDecimal / 2;
-                }
-
-                respuesta = binario.ToString();
-                break;
-            case "dec":
-                int dec=0;
-                int exponente = 0;
-                int numero = int.Parse(n1);
-                while (numero != 0)
-                    {
-                        digito = numero % 10;
-                        dec = dec + digito * (int)System.Math.Pow(2, exponente);
-                        exponente++;
-                        numero = numero / 10;
-                    }
-                respuesta = dec.ToString();
-                break;
-            case "log":
-                respuesta = (System.Math.Log10(double.Parse(n1))).ToString();
-                break;
-
         }
 
         // Redondear decimales si es necesario
