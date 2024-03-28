@@ -18,7 +18,7 @@ public class calculadora : MonoBehaviour {
     public void BorrarC()
     {
 
-        resultado.text = "";
+        resultado.text = "0";
         lblTempo.text = "";
         operacion.text = "";
     }
@@ -74,9 +74,13 @@ public class calculadora : MonoBehaviour {
     }
     public void raiz()
     {
-        if (resultado.text.Length > 0)
+        if (resultado.text.Length > 1)
         {
             resultado.text = resultado.text.Substring(0, resultado.text.Length - 1);
+        }
+        else if (resultado.text.Length == 1)
+        {
+            resultado.text = "0";
         }
     }
 
@@ -147,7 +151,7 @@ public class calculadora : MonoBehaviour {
                     respuesta = (double.Parse(n1) / double.Parse(n2)).ToString();
                 } else
                 {
-                    respuesta = "La divicion por 0 no es posible";
+                    respuesta = "La division por 0 no es posible";
                 }
                 
                 break;
@@ -197,6 +201,17 @@ public class calculadora : MonoBehaviour {
                 break;
 
         }
+
+        // Redondear decimales si es necesario
+        double resultadoNumerico;
+        if (double.TryParse(respuesta, out resultadoNumerico))
+        {
+            if (resultadoNumerico == (int)resultadoNumerico) // Si es un número entero
+                respuesta = resultadoNumerico.ToString("F0"); // Mostrar sin decimales
+            else
+                respuesta = resultadoNumerico.ToString("F5"); // Mostrar con 5 decimales
+        }
+        
         return respuesta;
     }
 }
