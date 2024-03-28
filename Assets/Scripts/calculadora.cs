@@ -65,14 +65,14 @@ public class calculadora : MonoBehaviour {
         }
     }
 
-    public void potencia2()
+    public void deci()
     {
         if (!resultado.text.Contains("."))
         {
             resultado.text += ".";
         }
     }
-    public void raiz()
+    public void retroceso()
     {
         if (resultado.text.Length > 1)
         {
@@ -84,21 +84,21 @@ public class calculadora : MonoBehaviour {
         }
     }
 
-    public void potenciaX()
+    public void memoryplus()
     {
         if (resultado.text != "")
         {
             memoria += double.Parse(resultado.text);
         }
     }
-    public void log()
+    public void memoryless()
     {
         if (resultado.text != "")
         {
             memoria -= double.Parse(resultado.text);
         }
     }
-    public void dec()
+    public void memoryclear()
     {
         memoria = 0;
     }
@@ -108,7 +108,7 @@ public class calculadora : MonoBehaviour {
     }
 
 
-    public void mod()
+    public void memoryresult()
     {
         if (resultado.text != "")
         {
@@ -155,7 +155,7 @@ public class calculadora : MonoBehaviour {
                 }
                 
                 break;
-            case "raiz":
+            case "retroceso":
                 respuesta = (System.Math.Sqrt(double.Parse(n1))).ToString();
                 break;
             case "po2":
