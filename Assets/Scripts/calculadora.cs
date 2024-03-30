@@ -8,12 +8,13 @@ public class calculadora : MonoBehaviour {
     public Text resultado;
     public Text lblTempo;
     public Text operacion;
+    public Text memoria;
+    public Image imagen;
     private string textoimprimir;
     string valor1;
     string valor2;
     string operacionActual;
     double rta;
-    double memoria = 0;
 
     public void op_parcial()
     {
@@ -98,23 +99,32 @@ public class calculadora : MonoBehaviour {
     {
         if (resultado.text != "")
         {
-            memoria += double.Parse(resultado.text);
+            valor2 = memoria.text;
+            valor1 = resultado.text;
+            memoria.text = operaciones(valor1, valor2, "+");
+            resultado.text = "0";
         }
     }
     public void memoryless()
     {
         if (resultado.text != "")
         {
-            memoria -= double.Parse(resultado.text);
+            valor1 = memoria.text;
+            valor2 = resultado.text;
+            memoria.text = operaciones(valor1, valor2, "-");
+            resultado.text = "0";
         }
     }
     public void memoryclear()
     {
-        memoria = 0;
+        
+        memoria.text = "0";
     }
     public void memoryresult()
     {
-        resultado.text = memoria.ToString();
+        if (memoria.text != "") {
+            resultado.text = memoria.text;
+        }
     }
     public void igual()
     {
@@ -165,4 +175,9 @@ public class calculadora : MonoBehaviour {
         
         return respuesta;
     }
+    void Start()
+    {
+        memoria.text = "0";
+    }
+
 }
