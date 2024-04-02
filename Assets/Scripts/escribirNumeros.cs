@@ -6,6 +6,7 @@ public class escribirNumeros : MonoBehaviour {
 
     private string textoimprimir;
     public Text resultado;
+    public bool activo = false;
 
     public void reemplazar0()
     {
@@ -83,6 +84,9 @@ public class escribirNumeros : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (resultado.text == "")
+        {
+            resultado.text = "0";
+        }
 	}
 }

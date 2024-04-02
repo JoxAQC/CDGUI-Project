@@ -99,10 +99,10 @@ public class calculadora : MonoBehaviour {
     {
         if (resultado.text != "")
         {
-            valor2 = memoria.text;
-            valor1 = resultado.text;
+            valor1 = memoria.text;
+            valor2 = resultado.text;
             memoria.text = operaciones(valor1, valor2, "+");
-            resultado.text = "0";
+            resultado.text = memoria.text;
         }
     }
     public void memoryless()
@@ -112,19 +112,16 @@ public class calculadora : MonoBehaviour {
             valor1 = memoria.text;
             valor2 = resultado.text;
             memoria.text = operaciones(valor1, valor2, "-");
-            resultado.text = "0";
+            resultado.text = memoria.text;
         }
     }
     public void memoryclear()
     {
-        
         memoria.text = "0";
     }
     public void memoryresult()
     {
-        if (memoria.text != "") {
-            resultado.text = memoria.text;
-        }
+        resultado.text = memoria.text;
     }
     public void igual()
     {
@@ -134,7 +131,6 @@ public class calculadora : MonoBehaviour {
             valor1 = lblTempo.text;
             operacionActual = operacion.text;
             resultado.text = operaciones(valor1, valor2, operacionActual);
-            
         }
     }
     public string operaciones(string n1, string n2, string opeMath)
@@ -172,12 +168,22 @@ public class calculadora : MonoBehaviour {
             else
                 respuesta = resultadoNumerico.ToString("F5"); // Mostrar con 5 decimales
         }
-        
+
+        memoria.text = respuesta;
         return respuesta;
     }
     void Start()
     {
         memoria.text = "0";
     }
-
+    void Update()
+    {
+        if (memoria.text != "0")
+        {
+            imagen.color = Color.green;
+        } else
+        {
+            imagen.color = Color.red;
+        }
+    }
 }
