@@ -121,7 +121,10 @@ public class calculadora : MonoBehaviour {
     }
     public void memoryresult()
     {
-        resultado.text = memoria.text;
+        if(imagen.color==Color.green)
+        {
+            resultado.text = memoria.text;
+        }
     }
     public void igual()
     {
@@ -131,6 +134,8 @@ public class calculadora : MonoBehaviour {
             valor1 = lblTempo.text;
             operacionActual = operacion.text;
             resultado.text = operaciones(valor1, valor2, operacionActual);
+            lblTempo.text = "";
+            operacion.text = "";
         }
     }
     public string operaciones(string n1, string n2, string opeMath)
@@ -168,8 +173,6 @@ public class calculadora : MonoBehaviour {
             else
                 respuesta = resultadoNumerico.ToString("F5"); // Mostrar con 5 decimales
         }
-
-        memoria.text = respuesta;
         return respuesta;
     }
     void Start()
